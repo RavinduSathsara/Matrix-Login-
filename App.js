@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
+import styles from './style/main';
 
 import {
   SafeAreaView,
-  StyleSheet,
   Text,
-  View,
   TextInput,
-  Button,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 const App = () => {
@@ -17,8 +16,9 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Image style={styles.tinyLogo} source={require('./assets/img/bit.png')} />
-      <Text style={styles.txt}>Bit Login</Text>
+      <Text style={styles.txt}>BIT Login</Text>
       <TextInput
+        placeholderTextColor="gray"
         placeholder="UserName"
         style={styles.input}
         onChangeText={setUserName}
@@ -26,51 +26,22 @@ const App = () => {
       />
       <TextInput
         placeholder="Password"
+        placeholderTextColor="gray"
         secureTextEntry={true}
         style={styles.input}
         onChangeText={setPassword}
         value={password}
       />
-      <View style={styles.btn}>
-        <Button
-          title="Login"
-          onPress={() => {
-            console.log(userName + '  ' + password);
-          }}
-        />
-      </View>
+
+      <TouchableOpacity
+        style={styles.touch}
+        onPress={() => {
+          console.log(userName + '  ' + password);
+        }}>
+        <Text style={styles.btntxt}>LOG IN</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  txt: {
-    fontSize: 40,
-
-    textAlign: 'center',
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    paddingHorizontal: 20,
-
-    borderWidth: 2,
-    borderRadius: 50 / 2,
-    padding: 10,
-  },
-  tinyLogo: {
-    margin: 50,
-  },
-  btn: {
-    margin: 20,
-  },
-});
 
 export default App;
